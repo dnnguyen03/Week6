@@ -1,0 +1,79 @@
+.SearchFilter {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: capitalize;
+}
+h1 {
+  font-size: 40px;
+}
+.crypto {
+  height: 35px;
+  width: 250px;
+  margin-top: 25px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  outline-style: solid;
+  outline-color: #9999;
+  outline-width: 0.5px;
+  padding: 15px;
+  background-color: #eff2f5d3;
+}
+input:focus {
+  outline-color: #000000;
+}
+.container {
+  margin-top: 50px;
+}
+.information {
+  display: flex;
+  font-weight: 700;
+  padding: 15px 20px;
+  border-top: 1px solid #eff2f5;
+  border-bottom: 1px solid #eff2f5;
+}
+
+.coin {
+  display: flex;
+  padding: 20px;
+  height: 75px;
+  border-bottom: 1px solid #eff2f5;
+}
+.rank {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 50px;
+}
+.price,
+.percent24h {
+  width: 150px;
+}
+.marketCap {
+  width: 200px;
+}
+.price,
+.percent24h,
+.marketCap {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.coin > div {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
+    Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+.inforCoin {
+  width: 250px;
+  display: flex;
+  align-items: center;
+}
+.imgCoin {
+  height: 100%;
+}
+.imgCoin img {
+  height: 100%;
+}
