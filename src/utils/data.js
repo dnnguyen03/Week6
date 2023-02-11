@@ -1,7 +1,7 @@
 export const links = [
   {
     id: 1,
-    to: "/",
+    to: "/Week6",
     name: "Search Filter",
   },
   {

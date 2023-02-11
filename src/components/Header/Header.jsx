@@ -27,6 +27,7 @@ export default function Header() {
         </div>
       </nav>
       <Routes>
+        <Route path="/" element={<SearchFilter />}></Route>
         <Route path="/Week6" element={<SearchFilter />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/quiz" element={<Quiz />}></Route>
