@@ -1,15 +1,9 @@
 import React from "react";
-import useAxios from "../../hook/useAxios";
-// import { uuid } from "uuid";
-export default function ListCoin() {
-  const { data } = useAxios(
-    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=10&sparkline=false`
-  );
-  console.log(data);
+export default function ListCoin(props) {
   return (
     <div className="ListCoin">
-      {data &&
-        data.map((coin) => {
+      {props?.data &&
+        props?.data.map((coin) => {
           const {
             name,
             market_cap_rank: rank,
@@ -31,10 +25,16 @@ export default function ListCoin() {
               </div>
 
               <div className="price">${price}</div>
-              <div className="percent24h">
+              <div
+                className="percent24h"
+                style={{
+                  color:
+                    price_change_percentage_24h > 0 ? "#16c784" : "#ea3943",
+                }}
+              >
                 {Math.round(price_change_percentage_24h * 100) / 100}%
               </div>
-              <div className="marketCap">${market_cap}</div>
+              <div className="marketCap">${market_cap.toLocaleString()}</div>
             </div>
           );
         })}

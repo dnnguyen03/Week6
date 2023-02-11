@@ -24,8 +24,48 @@ h1 {
 input:focus {
   outline-color: #000000;
 }
+.filter {
+  cursor: pointer;
+  text-align: center;
+  overflow: hidden;
+  transition: all 0.3s linear;
+  padding-bottom: 1px;
+}
+.valueFilter {
+  padding: 8px 20px;
+  margin: 25px 0px 0;
+  border-radius: 12px;
+  border: 1px solid #9999;
+  background-color: #eff2f5d3;
+  width: 280px;
+  position: relative;
+}
+.icon {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  transition: all 0.3s linear;
+}
+.active .icon {
+  transform: rotate(180deg);
+}
+.listFilter {
+  height: 0;
+  transition: all 0.3s linear;
+  margin-bottom: -1px;
+}
+.listOption {
+  border: 1px solid #9999;
+  border-radius: 12px;
+  margin-top: 12px;
+}
+.option {
+  padding: 10px 0;
+  border-bottom: 1px solid #9999;
+}
 .container {
   margin-top: 50px;
+  position: relative;
 }
 .information {
   display: flex;
@@ -33,6 +73,9 @@ input:focus {
   padding: 15px 20px;
   border-top: 1px solid #eff2f5;
   border-bottom: 1px solid #eff2f5;
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
 
 .coin {
@@ -76,4 +119,70 @@ input:focus {
 }
 .imgCoin img {
   height: 100%;
+}
+.name,
+.symbol {
+  font-weight: 700;
+  padding-left: 8px;
+}
+.symbol {
+  text-transform: uppercase;
+  color: #808a9d;
+}
+.loading {
+  position: relative;
+  height: 110px;
+  width: 110px;
+  display: grid;
+  place-content: center;
+  margin: 0 auto;
+  margin-top: 10%;
+}
+.loader .loader-outter {
+  position: absolute;
+  border: 4px solid #ff8400;
+  border-left-color: transparent;
+  border-bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -webkit-animation: loader-1-outter 1s cubic-bezier(0.42, 0.61, 0.58, 0.41)
+    infinite;
+  animation: loader-1-outter 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
+}
+
+.loader .loader-inner {
+  border: 4px solid #ff8400;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  left: calc(50% - 20px);
+  top: calc(50% - 20px);
+  border-right: 0;
+  border-top-color: transparent;
+  -webkit-animation: loader-1-inner 1s cubic-bezier(0.42, 0.61, 0.58, 0.41)
+    infinite;
+  animation: loader-1-inner 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
+}
+
+@keyframes loader-1-outter {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-1-inner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
 }
