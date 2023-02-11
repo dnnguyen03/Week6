@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import SearchFilter from "../SearchFilter/SearchFilter";
 import logo from "../../asset/image/logo1.png";
@@ -27,9 +27,10 @@ export default function Header() {
         </div>
       </nav>
       <Routes>
-        <Route path="/" element={<SearchFilter />}></Route>
+        <Route exact path="/" element={<SearchFilter />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/quiz" element={<Quiz />}></Route>
+        <Route component={SearchFilter} />
       </Routes>
     </header>
   );
