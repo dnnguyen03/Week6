@@ -94,4 +94,12 @@ nav {
   .link::after {
     margin: 0;
   }
+  .active::after {
+    display: block;
+    content: "";
+    border-bottom: solid 3px #000000;
+    border-radius: 10px;
+    transform: scaleX(1);
+    transition: transform 0.25s ease-in-out;
+  }
 }
