@@ -36,7 +36,6 @@ export default function SearchFilter() {
         })
         .then((res) => {
           setLoangding(true);
-          console.log(filter);
           if (filter === "Giá tăng trong 24%") {
             setSearchResults(
               res.data.sort(
@@ -67,8 +66,9 @@ export default function SearchFilter() {
         });
       setTimeout(() => {
         setLoangding(false);
-      }, 1500);
+      }, 1000);
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [baseURL, valueFilter]
   );
 
@@ -78,6 +78,7 @@ export default function SearchFilter() {
     } else {
       fetchData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -85,6 +86,7 @@ export default function SearchFilter() {
       navigate(`?q=${searchTerm}`);
       fetchData(searchTerm);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchTerm]);
 
   const handleSubmit = (e) => {
@@ -117,10 +119,33 @@ export default function SearchFilter() {
       listFilter.current.style.height = 0;
     });
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       filter.current.removeEventListener("click", toggleFilter);
     };
   });
 
+  const resultData = (searchResults) => {
+    if (loading) {
+      return (
+        <div className="loading loader">
+          <div className="loader-outter"></div>
+          <div className="loader-inner"></div>
+        </div>
+      );
+    } else if (error || searchResults.length < 1) {
+      return (
+        <div className="noData">
+          <div className="circle">
+            <div className="icon">
+              <i className="fa-solid fa-xmark"></i>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return <ListCoin data={searchResults}></ListCoin>;
+    }
+  };
   return (
     <div className="SearchFilter">
       <h1>cryptocurrency market</h1>
@@ -130,6 +155,7 @@ export default function SearchFilter() {
           placeholder="Search"
           className="crypto"
           defaultValue={queryParams}
+          maxLength={15}
           onKeyUp={(e) => {
             if (e.target.value === "") {
               fetchData();
@@ -169,14 +195,7 @@ export default function SearchFilter() {
           <div className="percent24h">24h %</div>
           <div className="marketCap">market cap</div>
         </div>
-        {loading ? (
-          <div className="loading loader">
-            <div class="loader-outter"></div>
-            <div class="loader-inner"></div>
-          </div>
-        ) : (
-          <ListCoin data={searchResults}></ListCoin>
-        )}
+        {resultData(searchResults)}
       </div>
     </div>
   );

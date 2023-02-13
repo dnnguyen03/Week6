@@ -3,10 +3,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-transform: capitalize;
 }
 h1 {
   font-size: 40px;
+  text-transform: capitalize;
 }
 .crypto {
   height: 35px;
@@ -30,6 +30,7 @@ input:focus {
   overflow: hidden;
   transition: all 0.3s linear;
   padding-bottom: 1px;
+  text-transform: capitalize;
 }
 .valueFilter {
   padding: 8px 20px;
@@ -40,7 +41,7 @@ input:focus {
   width: 280px;
   position: relative;
 }
-.icon {
+.valueFilter .icon {
   position: absolute;
   right: 10px;
   top: 8px;
@@ -58,6 +59,7 @@ input:focus {
   border: 1px solid #9999;
   border-radius: 12px;
   margin-top: 12px;
+  overflow: hidden;
 }
 .option {
   padding: 10px 0;
@@ -76,6 +78,7 @@ input:focus {
   position: sticky;
   top: 0;
   background-color: white;
+  text-transform: capitalize;
 }
 
 .coin {
@@ -83,6 +86,7 @@ input:focus {
   padding: 20px;
   height: 75px;
   border-bottom: 1px solid #eff2f5;
+  text-transform: capitalize;
 }
 .rank {
   display: flex;
@@ -146,9 +150,7 @@ input:focus {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  -webkit-animation: loader-1-outter 1s cubic-bezier(0.42, 0.61, 0.58, 0.41)
-    infinite;
-  animation: loader-1-outter 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
+  animation: loader-outter 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
 }
 
 .loader .loader-inner {
@@ -160,29 +162,104 @@ input:focus {
   top: calc(50% - 20px);
   border-right: 0;
   border-top-color: transparent;
-  -webkit-animation: loader-1-inner 1s cubic-bezier(0.42, 0.61, 0.58, 0.41)
-    infinite;
-  animation: loader-1-inner 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
+  animation: loader-inner 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
 }
 
-@keyframes loader-1-outter {
+.noData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.circle {
+  border: 1px solid #dc1800;
+  position: relative;
+  display: grid;
+  place-content: center;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.circle .icon i {
+  font-size: 100px;
+  color: #dc1800;
+  animation: noData 1s infinite linear;
+}
+@keyframes loader-outter {
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
 
-@keyframes loader-1-inner {
+@keyframes loader-inner {
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(-360deg);
     transform: rotate(-360deg);
+  }
+}
+
+@keyframes noData {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+/* --------------------- */
+
+@media screen and (max-width: 878px) {
+  h1 {
+    font-size: 30px;
+  }
+  .crypto {
+    font-size: 15px;
+  }
+  .filter {
+    font-size: 15px;
+  }
+  .inforCoin {
+    width: 200px;
+  }
+  .name {
+    font-size: 15px;
+  }
+  .symbol {
+    padding-left: 2px;
+    font-size: 14px;
+  }
+  .price,
+  .percent24h {
+    font-size: 15px;
+    width: 80px;
+  }
+  .marketCap {
+    font-size: 15px;
+    width: 150px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .SearchFilter {
+    padding-top: 30px;
+  }
+  .rank {
+    width: 30px;
+  }
+  .inforCoin {
+    width: 160px;
+  }
+  .marketCap {
+    display: none;
   }
 }
