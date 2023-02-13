@@ -1,9 +1,8 @@
-import React from "react";
-export default function ListCoin(props) {
+function ListCoin(props) {
   return (
     <div className="ListCoin">
       {props?.data &&
-        props?.data.map((coin) => {
+        props.data.map((coin) => {
           const {
             name,
             market_cap_rank: rank,
@@ -41,3 +40,4 @@ export default function ListCoin(props) {
     </div>
   );
 }
+export default ListCoin;

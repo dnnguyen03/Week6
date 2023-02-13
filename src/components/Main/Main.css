@@ -94,7 +94,7 @@ nav {
   .link::after {
     margin: 0;
   }
-  .active::after {
+  .links .active::after {
     display: block;
     content: "";
     border-bottom: solid 3px #000000;

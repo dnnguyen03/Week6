@@ -12,6 +12,49 @@ import { dataFilter } from "../../utils/data";
 
 import ListCoin from "./ListCoin";
 import "./SearchFilter.css";
+
+const ResultData = ({ searchResults, loading, error }) => {
+  if (loading) {
+    return (
+      <div className="loading loader">
+        <div className="loader-outter"></div>
+        <div className="loader-inner"></div>
+      </div>
+    );
+  } else if (error || searchResults.length < 1) {
+    return (
+      <div className="noData">
+        <div className="circle">
+          <div className="icon">
+            <i className="fa-solid fa-xmark"></i>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return <ListCoin data={searchResults}></ListCoin>;
+  }
+};
+
+const ListFilter = ({ listFilter, listOption, setFiter }) => {
+  return (
+    <div className="listFilter" ref={listFilter}>
+      <div className="listOption" ref={listOption}>
+        {dataFilter.map((option) => (
+          <li
+            className="option"
+            value={option.value}
+            key={option.value}
+            onClick={setFiter}
+          >
+            {option.filter}
+          </li>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function SearchFilter() {
   const navigate = useNavigate();
   const local = useLocation();
@@ -27,7 +70,7 @@ export default function SearchFilter() {
   const filter = useRef();
 
   const fetchData = useCallback(
-    async (url, filter) => {
+    async (url) => {
       axios
         .get(baseURL, {
           params: {
@@ -36,27 +79,7 @@ export default function SearchFilter() {
         })
         .then((res) => {
           setLoangding(true);
-          if (filter === "Giá tăng trong 24%") {
-            setSearchResults(
-              res.data.sort(
-                (a, b) =>
-                  b.price_change_percentage_24h - a.price_change_percentage_24h
-              )
-            );
-          } else if (filter === "Giá giảm trong 24%") {
-            setSearchResults(
-              res.data.sort(
-                (a, b) =>
-                  a.price_change_percentage_24h - b.price_change_percentage_24h
-              )
-            );
-          } else if (filter === "Sắp xếp theo tên từ a đến z") {
-            setSearchResults(
-              res.data.sort((a, b) => a.name.localeCompare(b.name))
-            );
-          } else {
-            setSearchResults(res.data);
-          }
+          setSearchResults(res.data);
         })
         .catch((err) => {
           setError(err);
@@ -69,8 +92,31 @@ export default function SearchFilter() {
       }, 1000);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [baseURL, valueFilter]
+    [baseURL]
   );
+
+  useEffect(() => {
+    if (valueFilter === "Giá tăng trong 24%") {
+      console.log(2);
+      setSearchResults(
+        searchResults.sort(
+          (a, b) =>
+            b.price_change_percentage_24h - a.price_change_percentage_24h
+        )
+      );
+    } else if (valueFilter === "Giá giảm trong 24%") {
+      setSearchResults(
+        searchResults.sort(
+          (a, b) =>
+            a.price_change_percentage_24h - b.price_change_percentage_24h
+        )
+      );
+    } else if (valueFilter === "Sắp xếp theo tên từ a đến z") {
+      setSearchResults(
+        searchResults.sort((a, b) => a.name.localeCompare(b.name))
+      );
+    }
+  }, [valueFilter]);
 
   useEffect(() => {
     if (local.search) {
@@ -96,11 +142,6 @@ export default function SearchFilter() {
 
   //Filter
 
-  const setFiter = (e) => {
-    setValueFilter(e.target.innerHTML);
-    fetchData(null, e.target.innerHTML);
-  };
-
   const toggleFilter = () => {
     if (filter.current.classList.contains("active")) {
       listFilter.current.style.height = 0;
@@ -124,28 +165,6 @@ export default function SearchFilter() {
     };
   });
 
-  const resultData = (searchResults) => {
-    if (loading) {
-      return (
-        <div className="loading loader">
-          <div className="loader-outter"></div>
-          <div className="loader-inner"></div>
-        </div>
-      );
-    } else if (error || searchResults.length < 1) {
-      return (
-        <div className="noData">
-          <div className="circle">
-            <div className="icon">
-              <i className="fa-solid fa-xmark"></i>
-            </div>
-          </div>
-        </div>
-      );
-    } else {
-      return <ListCoin data={searchResults}></ListCoin>;
-    }
-  };
   return (
     <div className="SearchFilter">
       <h1>cryptocurrency market</h1>
@@ -172,20 +191,12 @@ export default function SearchFilter() {
             <i className="fa-solid fa-chevron-down"></i>
           </div>
         </div>
-        <div className="listFilter" ref={listFilter}>
-          <div className="listOption" ref={listOption}>
-            {dataFilter.map((option) => (
-              <li
-                className="option"
-                value={option.value}
-                key={option.value}
-                onClick={setFiter}
-              >
-                {option.filter}
-              </li>
-            ))}
-          </div>
-        </div>
+
+        <ListFilter
+          listFilter={listFilter}
+          listOption={listOption}
+          setFiter={(e) => setValueFilter(e.target.innerHTML)}
+        />
       </div>
       <div className="container">
         <div className="information">
@@ -195,7 +206,11 @@ export default function SearchFilter() {
           <div className="percent24h">24h %</div>
           <div className="marketCap">market cap</div>
         </div>
-        {resultData(searchResults)}
+        <ResultData
+          searchResults={searchResults}
+          loading={loading}
+          error={error}
+        />
       </div>
     </div>
   );
