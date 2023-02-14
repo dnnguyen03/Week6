@@ -20,19 +20,19 @@ export const links = [
 ];
 export const dataFilter = [
   {
-    value: 1,
-    filter: "Mặc định",
+    id: 1,
+    value: "Mặc định",
   },
   {
-    value: 2,
-    filter: "Giá tăng trong 24%",
+    id: 2,
+    value: "Giá tăng trong 24%",
   },
   {
-    value: 3,
-    filter: "Giá giảm trong 24%",
+    id: 3,
+    value: "Giá giảm trong 24%",
   },
   {
-    value: 4,
-    filter: "Sắp xếp theo tên từ a đến z",
+    id: 4,
+    value: "Sắp xếp theo tên từ a đến z",
   },
 ];

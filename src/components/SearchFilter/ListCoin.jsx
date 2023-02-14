@@ -1,8 +1,10 @@
 function ListCoin(props) {
+  const { searchResults } = props;
+  console.log(searchResults);
   return (
     <div className="ListCoin">
-      {props?.data &&
-        props.data.map((coin) => {
+      {searchResults.length > 0 &&
+        searchResults.map((coin) => {
           const {
             name,
             market_cap_rank: rank,
