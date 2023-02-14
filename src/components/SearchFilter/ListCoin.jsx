@@ -1,6 +1,5 @@
 function ListCoin(props) {
   const { searchResults } = props;
-  console.log(searchResults);
   return (
     <div className="ListCoin">
       {searchResults.length > 0 &&
@@ -24,7 +23,6 @@ function ListCoin(props) {
                 <div className="name">{name}</div>{" "}
                 <div className="symbol">{symbol}</div>
               </div>
-
               <div className="price">${price}</div>
               <div
                 className="percent24h"

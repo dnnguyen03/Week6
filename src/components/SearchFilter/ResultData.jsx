@@ -20,7 +20,6 @@ const ResultData = (props) => {
       </div>
     );
   } else {
-    console.log(searchResults);
     return <ListCoin searchResults={searchResults}></ListCoin>;
   }
 };

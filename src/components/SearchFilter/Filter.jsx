@@ -1,24 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { dataFilter } from "../../utils/data";
-export const sortCoin = (valueFilter, searchResults) => {
-  return searchResults.sort((a, b) => {
-    if (valueFilter === "Giá tăng trong 24%") {
-      return b.price_change_percentage_24h - a.price_change_percentage_24h;
-    } else if (valueFilter === "Giá giảm trong 24%") {
-      return a.price_change_percentage_24h - b.price_change_percentage_24h;
-    } else if (valueFilter === "Sắp xếp theo tên từ a đến z") {
-      return a.name.localeCompare(b.name);
-    } else if (valueFilter === "mặc định") {
-      return b.market_cap - a.market_cap;
-    }
-  });
-};
+
 export default function Filter(props) {
   const listOption = useRef();
   const listFilter = useRef();
   const filter = useRef();
-  const { searchResults, setSearchResults, valueFilter, setValueFilter } =
-    props;
+  const { setSearchResults, valueFilter, setValueFilter } = props;
   const toggleFilter = () => {
     if (filter.current.classList.contains("active")) {
       listFilter.current.style.height = 0;
@@ -42,7 +29,21 @@ export default function Filter(props) {
     };
   });
   useEffect(() => {
-    setSearchResults(sortCoin(valueFilter, searchResults));
+    setSearchResults((data) => {
+      const dataSort = [...data];
+      dataSort.sort((a, b) => {
+        if (valueFilter === "Giá tăng trong 24%") {
+          return b.price_change_percentage_24h - a.price_change_percentage_24h;
+        } else if (valueFilter === "Giá giảm trong 24%") {
+          return a.price_change_percentage_24h - b.price_change_percentage_24h;
+        } else if (valueFilter === "Sắp xếp theo tên từ a đến z") {
+          return a.name.localeCompare(b.name);
+        } else {
+          return b.market_cap - a.market_cap;
+        }
+      });
+      return dataSort;
+    });
   }, [valueFilter]);
   return (
     <div className="filter">

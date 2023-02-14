@@ -16,7 +16,7 @@ export default function SearchFilter() {
   const navigate = useNavigate();
   const local = useLocation();
   const [error, setError] = useState("");
-  const [loading, setLoangding] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [searchResults, setSearchResults] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const queryParams = qs.parse(local.search).q;
@@ -30,20 +30,16 @@ export default function SearchFilter() {
         },
       })
       .then((res) => {
-        setLoangding(true);
+        setLoading(true);
         setSearchResults(res.data);
       })
       .catch((err) => {
         setError(err);
       })
       .finally(() => {
-        setLoangding(false);
+        setLoading(false);
       });
-    // setTimeout(() => {
-    //   setLoangding(false);
-    // }, 1000);
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (local.search) {
