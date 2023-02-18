@@ -65,7 +65,7 @@ input:focus {
   padding: 10px 0;
   border-bottom: 1px solid #9999;
 }
-.container {
+.SearchFilter .container {
   margin-top: 50px;
   position: relative;
 }

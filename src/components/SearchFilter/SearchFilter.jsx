@@ -1,12 +1,6 @@
 import axios from "axios";
 import qs from "query-string";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Filter from "./Filter";
 import ResultData from "./ResultData";

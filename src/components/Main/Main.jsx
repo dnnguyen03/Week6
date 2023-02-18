@@ -1,12 +1,12 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import SearchFilter from "../SearchFilter/SearchFilter";
 import logo from "../../asset/image/logo1.png";
 import logo2 from "../../asset/image/logo3.png";
-import SignUp from "../SignUp/SignUp";
 import Quiz from "../Quiz/Quiz";
 import "./Main.css";
 import { links } from "../../utils/data";
+import Form from "../Form/Form";
 export default function Main() {
   const [linkActive, setLinkActive] = useState(0);
   const logoRef = useRef();
@@ -49,7 +49,7 @@ export default function Main() {
       <Routes>
         <Route path="/" element={<SearchFilter />}></Route>
         <Route path="/Week6" element={<SearchFilter />}></Route>
-        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/signup" element={<Form />}></Route>
         <Route path="/quiz" element={<Quiz />}></Route>
       </Routes>
     </main>
