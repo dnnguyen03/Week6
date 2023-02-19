@@ -7,7 +7,7 @@
   overflow: hidden;
   height: calc(100vh - 100px);
 }
-h1 {
+.Form h1 {
   font-weight: 700;
   letter-spacing: -1.5px;
   margin: 0;
@@ -22,18 +22,18 @@ h1.title {
   margin: 0;
   text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
 }
-span {
+.Form span {
   font-size: 14px;
   margin-top: 25px;
 }
-.Form a {
-  color: #333;
+.pass-link a {
+  color: #4bb6b7;
   font-size: 14px;
-  margin: 15px 0;
+  margin: 15px 0 15px 15px;
   transition: all 0.3 ease-in-out;
 }
-a:hover {
-  color: #4bb6b7;
+.pass-link a:hover {
+  text-decoration: underline;
 }
 .content {
   display: flex;
@@ -286,6 +286,7 @@ form {
   margin: 20px 0;
 }
 .social-container a {
+  color: #333;
   border: 1px solid #dddddd;
   border-radius: 50%;
   display: inline-flex;
@@ -297,5 +298,81 @@ form {
   transition: all 0.3s ease-in-out;
 }
 .social-container a:hover {
-  border: 1px solid y#4bb6b7;
+  color: #4bb6b7;
+  border: 1px solid #4bb6b7;
+}
+.btn-mobile {
+  display: none;
+  width: 100%;
+  border-top: 1px solid #adadad;
+}
+.btn-mobile button {
+  border-color: #a0d995;
+  background-color: #a0d995;
+  margin-top: 25px;
+  padding: 12px 45px;
+}
+@media screen and (max-width: 768px) {
+  .Form .container {
+    min-height: 700px;
+    width: 440px;
+  }
+  .btn-mobile {
+    display: block;
+  }
+  .btn-mobile button {
+    padding: 10px 40px;
+  }
+  button:hover {
+    letter-spacing: 1px;
+  }
+  .overlay-container {
+    display: none;
+  }
+  .login-container,
+  .register-container {
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+  .container.right-panel-active .login-container {
+    transform: translateX(100%);
+  }
+  .register-container {
+    transform: translate(0) !important;
+    opacity: 1;
+    animation: none !important;
+  }
+  .textfield {
+    width: 85%;
+  }
+  .textfield input {
+    font-size: 15px;
+  }
+  .textfield .error {
+    font-size: 15px;
+  }
+  .textfield span::before {
+    top: 52px;
+  }
+  .Form span {
+    margin-top: 10px;
+  }
+  button {
+    padding: 10px 65px;
+    font-size: 14px;
+  }
+  .Form h1 {
+    font-size: 32px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .Form .container {
+    min-height: 660px;
+  }
+  .Form .container {
+    width: 90%;
+  }
+  .textfield {
+    width: 95%;
+  }
 }

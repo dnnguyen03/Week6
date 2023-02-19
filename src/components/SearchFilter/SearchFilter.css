@@ -220,7 +220,7 @@ input:focus {
 /* --------------------- */
 
 @media screen and (max-width: 878px) {
-  h1 {
+  .SearchFilter h1 {
     font-size: 30px;
   }
   .crypto {

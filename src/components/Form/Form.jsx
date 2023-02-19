@@ -42,6 +42,11 @@ export default function Form() {
                 <i className="fa-brands fa-google"></i>
               </a>
             </div>
+            <div className="btn-mobile">
+              <button type="reset" onClick={toggle}>
+                Login
+              </button>
+            </div>
           </form>
         </div>
 
@@ -63,7 +68,7 @@ export default function Form() {
             <div className="content">
               <div className="checkbox">
                 <input type="checkbox" name="checkbox" id="checkbox" />
-                <p htmlFor="">Remember me-</p>
+                <p htmlFor="">Remember me</p>
               </div>
               <div className="pass-link">
                 <a href="#">Forgot password?</a>
@@ -78,6 +83,11 @@ export default function Form() {
               <a href="#" className="social">
                 <i className="fa-brands fa-google"></i>
               </a>
+            </div>
+            <div className="btn-mobile">
+              <button type="reset" onClick={toggle}>
+                Register
+              </button>
             </div>
           </form>
         </div>
