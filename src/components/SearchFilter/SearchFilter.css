@@ -68,6 +68,7 @@ input:focus {
 .SearchFilter .container {
   margin-top: 50px;
   position: relative;
+  /* max-width: 855px; */
 }
 .information {
   display: flex;

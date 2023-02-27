@@ -1,96 +1,35 @@
 import "./Form.css";
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
+import Register from "./Register";
+import Login from "./Login";
 export default function Form() {
+  const [listAccout, setListAccout] = useState(
+    localStorage.getItem("Accout")
+      ? JSON.parse(localStorage.getItem("Accout"))
+      : []
+  );
+
   const [click, setClick] = useState(false);
   const toggle = () => {
+    const inputValue = document.querySelectorAll(".Form input");
+    inputValue.forEach((item) => {
+      item.value = "";
+    });
     setClick(!click);
   };
+
+  useLayoutEffect(() => {
+    localStorage.setItem("Accout", JSON.stringify(listAccout));
+  }, [listAccout]);
+
   return (
     <div className="Form">
       <div
         className={`container ${click ? "right-panel-active" : ""}`}
         id="container"
       >
-        <div className="form-container register-container">
-          <form action="#">
-            <h1>Register</h1>
-            <div className="textfield">
-              <input type="text" required />
-              <span></span>
-              <label htmlFor="">Username</label>
-              <p className="error"></p>
-            </div>
-            <div className="textfield">
-              <input type="text" required />
-              <span></span>
-              <label htmlFor="">Email</label>
-              <p className="error"></p>
-            </div>
-            <div className="textfield">
-              <input type="password" required />
-              <span></span>
-              <label htmlFor="">Passwork</label>
-              <p className="error"></p>
-            </div>
-            <button>Register</button>
-            <span>or use your account</span>
-            <div className="social-container">
-              <a href="#" className="social">
-                <i className="fa-brands fa-facebook-f"></i>
-              </a>
-              <a href="#" className="social">
-                <i className="fa-brands fa-google"></i>
-              </a>
-            </div>
-            <div className="btn-mobile">
-              <button type="reset" onClick={toggle}>
-                Login
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <div className="form-container login-container">
-          <form action="#">
-            <h1>Login</h1>
-            <div className="textfield">
-              <input type="text" required />
-              <span></span>
-              <label htmlFor="">Username</label>
-              <p className="error"></p>
-            </div>
-            <div className="textfield">
-              <input type="password" required />
-              <span></span>
-              <label htmlFor="">Passwork</label>
-              <p className="error"></p>
-            </div>
-            <div className="content">
-              <div className="checkbox">
-                <input type="checkbox" name="checkbox" id="checkbox" />
-                <p htmlFor="">Remember me</p>
-              </div>
-              <div className="pass-link">
-                <a href="#">Forgot password?</a>
-              </div>
-            </div>
-            <button>Login</button>
-            <span>or use your account</span>
-            <div className="social-container">
-              <a href="#" className="social">
-                <i className="fa-brands fa-facebook-f"></i>
-              </a>
-              <a href="#" className="social">
-                <i className="fa-brands fa-google"></i>
-              </a>
-            </div>
-            <div className="btn-mobile">
-              <button type="reset" onClick={toggle}>
-                Register
-              </button>
-            </div>
-          </form>
-        </div>
+        <Register toggle={toggle} setListAccout={setListAccout}></Register>
+        <Login toggle={toggle}></Login>
 
         <div className="overlay-container">
           <div className="overlay">

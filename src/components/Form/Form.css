@@ -5,7 +5,8 @@
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  height: calc(100vh - 100px);
+  height: 100vh;
+  padding-bottom: 50px;
 }
 .Form h1 {
   font-weight: 700;
@@ -146,10 +147,14 @@ form {
   pointer-events: none;
 }
 .textfield .error {
+  font-size: 15px;
   color: red;
   text-align: start;
   padding-left: 5px;
   margin: 0 0 10px;
+}
+.textfield input:invalid ~ .error {
+  display: none;
 }
 .textfield input:focus {
   outline: none;
