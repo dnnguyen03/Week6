@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export default function Login(props) {
   const {
@@ -58,18 +59,18 @@ export default function Login(props) {
             <p htmlFor="">Remember me</p>
           </div>
           <div className="pass-link">
-            <a href="#">Forgot password?</a>
+            <Link to="#">Forgot password?</Link>
           </div>
         </div>
         <button>Login</button>
         <span>or use your account</span>
         <div className="social-container">
-          <a href="#" className="social">
+          <Link to="#" className="social">
             <i className="fa-brands fa-facebook-f"></i>
-          </a>
-          <a href="#" className="social">
+          </Link>
+          <Link to="#" className="social">
             <i className="fa-brands fa-google"></i>
-          </a>
+          </Link>
         </div>
         <div className="btn-mobile">
           <button type="button" onClick={toggle}>

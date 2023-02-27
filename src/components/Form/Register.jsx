@@ -1,27 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export default function Register(props) {
   const {
     register,
-    setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    mode: "onChange",
-    defaultValues: {
-      Username: "",
-      Email: "",
-      Passwork: "",
-    },
-  });
+  } = useForm({ mode: "onChange" });
   const { setListAccout, toggle } = props;
   const onSubmit = (data) => {
     setListAccout((prev) => [...prev, data]);
-  };
-  const resetValue = () => {
-    // toggle();
-    setValue("Username", "");
   };
   return (
     <div className="form-container register-container">
@@ -81,15 +70,15 @@ export default function Register(props) {
         <button>Register</button>
         <span>or use your account</span>
         <div className="social-container">
-          <a href="#" className="social">
+          <Link to="#" className="social">
             <i className="fa-brands fa-facebook-f"></i>
-          </a>
-          <a href="#" className="social">
+          </Link>
+          <Link to="#" className="social">
             <i className="fa-brands fa-google"></i>
-          </a>
+          </Link>
         </div>
         <div className="btn-mobile">
-          <button type="button" onClick={resetValue}>
+          <button type="button" onClick={toggle}>
             Login
           </button>
         </div>
