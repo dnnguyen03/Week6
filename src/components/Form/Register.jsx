@@ -1,17 +1,32 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import React, { useState } from "react"
+import { useForm } from "react-hook-form"
+import { Link } from "react-router-dom"
 
 export default function Register(props) {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm({ mode: "onChange" });
-  const { setListAccout, toggle } = props;
+  } = useForm({ mode: "onChange" })
+  const { setListAccout, toggle, listAccout } = props
   const onSubmit = (data) => {
-    setListAccout((prev) => [...prev, data]);
-  };
+    console.log(data, listAccout)
+    setListAccout((prev) => [...prev, data])
+  }
+  // const [emailExists, setEmailExists] = useState(false)
+  // const handleEmailBlur = () => {
+  //   const email = watch("Email")
+
+  //   listAccout.forEach((accout) => {
+  //     if (accout.Email === email) {
+  //       return setEmailExists(true)
+  //     }
+  //     setEmailExists(false)
+  //   })
+
+  //   console.log(emailExists)
+  // }
   return (
     <div className="form-container register-container">
       <form action="#" onSubmit={handleSubmit(onSubmit)}>
@@ -46,7 +61,7 @@ export default function Register(props) {
           />
           <span></span>
           <label htmlFor="">Email</label>
-
+          {/* {emailExists && <p className="error">This email is already taken</p>} */}
           {errors.Email && <p className="error">{errors.Email.message}</p>}
         </div>
         <div className="textfield">
@@ -84,5 +99,5 @@ export default function Register(props) {
         </div>
       </form>
     </div>
-  );
+  )
 }

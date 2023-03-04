@@ -1,26 +1,26 @@
-import "./Form.css";
-import React, { useLayoutEffect, useState } from "react";
-import Register from "./Register";
-import Login from "./Login";
+import "./Form.css"
+import React, { useLayoutEffect, useState } from "react"
+import Register from "./Register"
+import Login from "./Login"
 export default function Form() {
   const [listAccout, setListAccout] = useState(
     localStorage.getItem("Accout")
       ? JSON.parse(localStorage.getItem("Accout"))
       : []
-  );
+  )
 
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState(false)
   const toggle = () => {
-    const inputValue = document.querySelectorAll(".Form input");
+    const inputValue = document.querySelectorAll(".Form input")
     inputValue.forEach((item) => {
-      item.value = "";
-    });
-    setClick(!click);
-  };
+      item.value = ""
+    })
+    setClick(!click)
+  }
 
   useLayoutEffect(() => {
-    localStorage.setItem("Accout", JSON.stringify(listAccout));
-  }, [listAccout]);
+    localStorage.setItem("Accout", JSON.stringify(listAccout))
+  }, [listAccout])
 
   return (
     <div className="Form">
@@ -28,7 +28,11 @@ export default function Form() {
         className={`container ${click ? "right-panel-active" : ""}`}
         id="container"
       >
-        <Register toggle={toggle} setListAccout={setListAccout}></Register>
+        <Register
+          toggle={toggle}
+          setListAccout={setListAccout}
+          listAccout={listAccout}
+        ></Register>
         <Login toggle={toggle}></Login>
 
         <div className="overlay-container">
@@ -58,5 +62,5 @@ export default function Form() {
         </div>
       </div>
     </div>
-  );
+  )
 }
